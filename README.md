@@ -1,7 +1,7 @@
 django-fixturemedia
 ===================
 
-Simple tool to manage media files for fixtures.
+Simple tool to manage media files for fixtures. Contributions welcome.
 
 Put relative paths in your fixtures, put your media files in a media directory
 in you fixtures directory.
@@ -55,7 +55,7 @@ in the appropriate location.
                         awesome-sauce.jpg
 
 
-3. Run `django-admin.py collectmedia` or ``
+3. Run `django-admin.py collectmedia` or `manage.py collectmedia`
 
 
         ./manage.py collectmedia
@@ -66,5 +66,5 @@ in the appropriate location.
 TODO
 ----
 
-Convert to better command modeled after the excellent staticfiles app.
-Contributions welcome.
++ Add tests.
++ Convert to better command modeled after the excellent staticfiles app.

@@ -9,7 +9,7 @@ from ._utils import file_patt
 
 class Command(NoArgsCommand):
     
-    def handle(self, *args, **kwargs):
+    def handle_noargs(self, **options):
         from django.conf import settings
         
         app_module_paths = []

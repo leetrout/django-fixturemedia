@@ -37,7 +37,7 @@ class Command(NoArgsCommand):
                 pass
         
         confirm = raw_input("This will overwrite any existing files. Proceed? ")
-        if confirm != 'yes':
+        if not confirm.startswith('y'):
             raise CommandError("Media syncing aborted")
         
         for root, fixture in json_fixtures:

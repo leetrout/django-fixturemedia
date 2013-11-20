@@ -6,7 +6,7 @@ from django.core.management.base import CommandError, NoArgsCommand
 from django.db.models import get_apps
 
 
-file_patt = re.compile(r'"([^"]+?\/[^"]+?\.[^."]+?)"')
+file_patt = re.compile(r'"([^"]+?\/+[^"]+?\.[^."]+?)"')
 
 
 class Command(NoArgsCommand):

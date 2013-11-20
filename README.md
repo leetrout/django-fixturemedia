@@ -18,7 +18,15 @@ Only supports JSON fixtures.
 Installation
 ------------
 
-Download the source code and put the fixturemedia module on your Python Path.
+Using pip:
+
+    pip install -e git://github.com/leetrout/django-fixturemedia.git#egg=django-fixturemedia
+
+Add `'fixturemedia'` to your installed apps.
+
+Manual install:
+
+Download the source code and run `python setup.py install` within the directory
 
 Add `'fixturemedia'` to your installed apps.
 

@@ -8,4 +8,4 @@ python:
 # TODO run as django test?
 install: "pip install ."
 # command to run tests
-script: test.py
+script: "python test.py"

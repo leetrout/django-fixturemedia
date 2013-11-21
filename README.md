@@ -1,5 +1,7 @@
-django-fixturemedia
+django-fixture-media
 ===================
+
+_Renamed 11/21/2013_
 
 Simple tool to manage media files for fixtures. Contributions welcome.
 
@@ -20,15 +22,15 @@ Installation
 
 Using pip:
 
-    pip install -e git://github.com/lieryan/django-fixturemedia.git@master#egg=django-fixturemedia
+    pip install django-fixture-media
 
-Add `'fixturemedia'` to your installed apps.
+Add `'fixture_media'` to your installed apps.
 
 Manual install:
 
 Download the source code and run `python setup.py install` within the directory
 
-Add `'fixturemedia'` to your installed apps.
+Add `'fixture_media'` to your installed apps.
 
 
 Usage
@@ -69,6 +71,12 @@ in the appropriate location.
         ./manage.py collectmedia
         This will overwrite any existing files. Proceed? yes
         Copied images/awesome-sauce.jpg to /tmp/django_media/images/awesome-sauce.jpg
+
+
+Thanks
+------
+lieryan
+swiharta
 
 
 TODO

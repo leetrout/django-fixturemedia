@@ -9,7 +9,7 @@ https://github.com/leetrout/django-fixturemedia/
 """
 
 setup(
-    name='django-fixturemedia',
+    name='django-fixture-media',
     version='0.1.2',
     description='Simple tool to manage media files for fixtures.',
     long_description=long_description,
@@ -17,9 +17,9 @@ setup(
     author_email='leetrout@gmail.com',
     url='https://github.com/leetrout/django-fixturemedia/',
     packages=[
-        'fixturemedia',
-        'fixturemedia.management',
-        'fixturemedia.management.commands'
+        'fixture_media',
+        'fixture_media.management',
+        'fixture_media.management.commands'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',

@@ -6,4 +6,5 @@ fixture_media/tests.py
 fixture_media/views.py
 fixture_media/management/__init__.py
 fixture_media/management/commands/__init__.py
+fixture_media/management/commands/_utils.py
 fixture_media/management/commands/collectmedia.py

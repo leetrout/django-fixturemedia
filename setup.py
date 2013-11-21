@@ -10,7 +10,7 @@ https://github.com/leetrout/django-fixturemedia/
 
 setup(
     name='django-fixture-media',
-    version='0.1.2',
+    version='0.1.3',
     description='Simple tool to manage media files for fixtures.',
     long_description=long_description,
     author='Lee Trout',

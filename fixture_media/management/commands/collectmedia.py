@@ -1,12 +1,10 @@
 import os
-import re
 from shutil import copy
 
 from django.core.management.base import CommandError, NoArgsCommand
 from django.db.models import get_apps
 
-
-file_patt = re.compile(r'"([^"]+?\/+[^"]+?\.[^."]+?)"')
+from ._utils import file_patt
 
 
 class Command(NoArgsCommand):

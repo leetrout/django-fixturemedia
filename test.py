@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from fixture_media.management.commands._utils import file_patt
 
 JSON = """

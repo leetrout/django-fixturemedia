@@ -1,6 +1,8 @@
 django-fixture-media
 ===================
 
+[![Build Status](https://travis-ci.org/leetrout/django-fixturemedia.png?branch=master)](https://travis-ci.org/leetrout/django-fixturemedia)
+
 _Renamed 11/21/2013_
 
 Simple tool to manage media files for fixtures. Contributions welcome.

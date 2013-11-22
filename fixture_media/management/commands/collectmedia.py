@@ -3,9 +3,10 @@ from shutil import copy
 
 from django.core.management.base import CommandError, NoArgsCommand
 from django.db.models import get_apps
+from django.conf import settings
 from optparse import make_option
 
-from ._utils import file_patt
+from ._utils import file_patt, file_patt_prefixed
 
 
 class Command(NoArgsCommand):
@@ -46,8 +47,13 @@ class Command(NoArgsCommand):
             if not confirm.startswith('y'):
                 raise CommandError("Media syncing aborted")
 
+        if getattr(settings, 'FIXTURE_MEDIA_REQUIRE_PREFIX', False):
+            pattern = file_patt_prefixed
+        else:
+            pattern = file_patt
+
         for root, fixture in json_fixtures:
-            file_paths = file_patt.findall(open(fixture).read())
+            file_paths = pattern.findall(open(fixture).read())
             if file_paths:
                 for fp in file_paths:
                     fixture_media = os.path.join(root, 'media')

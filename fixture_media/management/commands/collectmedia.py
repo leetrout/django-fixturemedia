@@ -3,13 +3,13 @@ from shutil import copy
 
 from django.core.management.base import CommandError, NoArgsCommand
 from django.db.models import get_apps
-from django.conf import settings
 from optparse import make_option
 
 from ._utils import file_patt, file_patt_prefixed
 
 
 class Command(NoArgsCommand):
+    can_import_settings = True
     option_list = NoArgsCommand.option_list + (
         make_option('--noinput',
             action='store_false', dest='interactive', default=True,
@@ -44,7 +44,7 @@ class Command(NoArgsCommand):
 
         if options['interactive']:
             confirm = raw_input("This will overwrite any existing files. Proceed? ")
-            if not confirm.startswith('y'):
+            if not confirm.lower().startswith('y'):
                 raise CommandError("Media syncing aborted")
 
         if getattr(settings, 'FIXTURE_MEDIA_REQUIRE_PREFIX', False):

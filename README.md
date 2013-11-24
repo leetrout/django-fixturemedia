@@ -75,6 +75,31 @@ in the appropriate location.
         Copied images/awesome-sauce.jpg to /tmp/django_media/images/awesome-sauce.jpg
 
 
+CONFIGURATION
+-------------
+
+* `FIXTURE_MEDIA_REQUIRE_PREFIX` (default: `False`)
+
+  By default, the management command will try to copy everything that resembles
+  a file path; if you have a lot of entries in your fixtures that looks like
+  file paths but is not actually one, you can specify
+  `FIXTURE_MEDIA_REQUIRE_PREFIX = True` in settings.py to make 
+  `./manage.py collectmedia` copy only files that are prefixed with `media://`.
+
+  Example:
+
+        [
+            {
+                "pk": 1,
+                "model": "myapp.mymodel",
+                "fields": {
+                    "name": "Awesome Sauce",
+                    "image": "media://images/awesome-sauce.jpg"
+                    "path": "this/is/ignored/awesome-sauce.jpg"
+                }
+            }
+        ]
+
 Thanks
 ------
 lieryan

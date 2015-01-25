@@ -31,7 +31,8 @@ class Command(NoArgsCommand):
                 app_module_paths.append(app.__file__)
         
         app_fixtures = [os.path.join(os.path.dirname(path), 'fixtures') for path in app_module_paths]
-        
+        app_fixtures += list(settings.FIXTURE_DIRS) + ['']
+
         json_fixtures = []
         for fixture_path in app_fixtures:
             try:

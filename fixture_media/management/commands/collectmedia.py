@@ -31,7 +31,8 @@ class Command(NoArgsCommand):
                 app_module_paths.append(app.__file__)
         
         app_fixtures = [os.path.join(os.path.dirname(path), 'fixtures') for path in app_module_paths]
-        
+        app_fixtures += list(settings.FIXTURE_DIRS) + ['']
+
         json_fixtures = []
         for fixture_path in app_fixtures:
             try:
@@ -59,7 +60,8 @@ class Command(NoArgsCommand):
                     fixture_media = os.path.join(root, 'media')
                     fixture_path = os.path.join(fixture_media, fp)
                     if not os.path.exists(fixture_path):
-                        self.stderr.write("File path (%s) found in fixture but not on disk in (%s) \n" % (fp,fixture_path))
+                        if int(options['verbosity']) >= 1:
+                            self.stderr.write("File path (%s) found in fixture but not on disk in (%s) \n" % (fp,fixture_path))
                         continue
                     final_dest = os.path.join(settings.MEDIA_ROOT, fp)
                     dest_dir = os.path.dirname(final_dest)

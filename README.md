@@ -16,7 +16,7 @@ Run `collectmedia` and your fixture media will be copied to MEDIA_ROOT.
 YMMV
 ----
 
-Only supports JSON fixtures.
+Only supports JSON and YAML fixtures.
 
 
 Installation

@@ -10,12 +10,12 @@ https://github.com/leetrout/django-fixturemedia/
 
 setup(
     name='django-fixture-media',
-    version='0.1.4',
+    version='0.2',
     description='Simple tool to manage media files for fixtures.',
     long_description=long_description,
     author='Lee Trout',
     author_email='leetrout@gmail.com',
-    url='https://github.com/leetrout/django-fixturemedia/',
+    url='https://github.com/Aleksei-Badyaev/django-fixturemedia/',
     packages=[
         'fixture_media',
         'fixture_media.management',
@@ -27,7 +27,10 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
-        'Programming Language :: Python',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
         'Topic :: Internet :: WWW/HTTP',
     ],
     zip_safe=False,

@@ -1,42 +1,41 @@
 import os
 from shutil import copy
 
-from django.core.management.base import CommandError, NoArgsCommand
-from django.db.models import get_apps
+from django.core.management.base import CommandError, BaseCommand
+from django.apps import apps
 from optparse import make_option
 
 from ._utils import file_patt, file_patt_prefixed
 
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
     can_import_settings = True
-    option_list = NoArgsCommand.option_list + (
-        make_option('--noinput',
-            action='store_false', dest='interactive', default=True,
-            help="Do NOT prompt the user for input of any kind."),
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--noinput',
+            action='store_false',
+            dest='interactive',
+            default=True,
+            help="Do NOT prompt the user for input of any kind."
         )
 
 
-    def handle_noargs(self, **options):
+    def handle(self, *args, **options):
         from django.conf import settings
         
         app_module_paths = []
-        for app in get_apps():
-            if hasattr(app, '__path__'):
-                # It's a 'models/' subpackage
-                for path in app.__path__:
+        for app in apps.get_app_configs():
+            if hasattr(app.module, '__path__'):
+                for path in app.module.__path__:
                     app_module_paths.append(path)
             else:
-                # It's a models.py module
-                app_module_paths.append(app.__file__)
+                app_module_paths.append(app.module.__file__)
         
-        app_fixtures = [os.path.join(os.path.dirname(path), 'fixtures') for path in app_module_paths]
-        app_fixtures += list(settings.FIXTURE_DIRS) + ['']
-
+        app_fixtures = [os.path.join(os.path.abspath(path), 'fixtures') for path in app_module_paths]
         json_fixtures = []
         for fixture_path in app_fixtures:
             try:
-                root, dirs, files = os.walk(fixture_path).next()
+                root, dirs, files = os.walk(fixture_path).__next__()
                 for file in files:
                     if file.rsplit('.', 1)[-1] == 'json':
                         json_fixtures.append((root, os.path.join(root, file)))
@@ -44,7 +43,7 @@ class Command(NoArgsCommand):
                 pass
 
         if options['interactive']:
-            confirm = raw_input("This will overwrite any existing files. Proceed? ")
+            confirm = input("This will overwrite any existing files. Proceed? ")
             if not confirm.lower().startswith('y'):
                 raise CommandError("Media syncing aborted")
 
@@ -60,8 +59,7 @@ class Command(NoArgsCommand):
                     fixture_media = os.path.join(root, 'media')
                     fixture_path = os.path.join(fixture_media, fp)
                     if not os.path.exists(fixture_path):
-                        if int(options['verbosity']) >= 1:
-                            self.stderr.write("File path (%s) found in fixture but not on disk in (%s) \n" % (fp,fixture_path))
+                        self.stderr.write("File path (%s) found in fixture but not on disk in (%s) \n" % (fp,fixture_path))
                         continue
                     final_dest = os.path.join(settings.MEDIA_ROOT, fp)
                     dest_dir = os.path.dirname(final_dest)
